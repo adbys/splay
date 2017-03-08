@@ -6,11 +6,6 @@ import adt.bt.Util;
 
 public class SplayTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implements SplayTree<T> {
 
-	@Override
-	public void insert(T element) {
-		super.insert(element);
-
-	}
 
 	private void splay(BSTNode<T> node) {
 
@@ -52,4 +47,36 @@ public class SplayTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implement
 		}
 
 	}
+	
+	@Override
+	public void remove(T element) {
+		BSTNode node = (BSTNode) super.search(element).getParent();
+		
+		if (!node.isEmpty())
+			super.remove(element);
+		this.splay((BSTNode<T>) node.getParent());
+
+	}
+	
+	@Override
+	public void insert(T element) {
+		super.insert(element);
+		this.search(element);
+	}
+
+	
+	@Override
+	public BSTNode<T> search(T element) {
+		BSTNode node = super.search(element);
+		
+		if (node.isEmpty())
+			this.splay((BSTNode<T>) node.getParent());
+		else
+			this.splay(node);
+		
+		return node;
+
+	}
+	
+
 }
