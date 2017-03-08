@@ -54,6 +54,7 @@ public class StudentSplayTreeTest {
 		splay.insert(120);
 		splay.insert(1);
 		splay.insert(-100);
+		
 
 		splay.remove(1);
 		assertEquals(3, splay.size());

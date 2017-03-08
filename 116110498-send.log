@@ -7,3 +7,13 @@
   <level>FINE</level>
   <message>File 116110498-ADBYS JOSE VASCONCELOS DE ANDRADE.zip was received. It was sent by ADBYS JOSE VASCONCELOS DE ANDRADE from IP 192.168.1.140</message>
 </record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2017-03-08T20:31:26.961-0300</date>
+  <logger>ADBYS JOSE VASCONCELOS DE ANDRADE</logger>
+  <level>FINE</level>
+  <message>File 116110498-ADBYS JOSE VASCONCELOS DE ANDRADE.zip was received. It was sent by ADBYS JOSE VASCONCELOS DE ANDRADE from IP 127.0.1.1</message>
+</record>
