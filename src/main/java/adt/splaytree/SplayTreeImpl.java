@@ -8,8 +8,6 @@ public class SplayTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implement
 
 
 	private void splay(BSTNode<T> node) {
-		if (node == null || this.root.equals(node) || node.getParent() == null)
-            return;
 
 		while (!node.getParent().isEmpty()) {
 
@@ -20,25 +18,27 @@ public class SplayTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implement
 				} else {
 					node = Util.leftRotation(node);
 					this.root = node;
+
 				}
 			} else {
 				
 				if (node.getParent().getLeft().equals(node)) {
-					if (node.getParent().getParent().getLeft().equals(node.getParent())) { // ZIG
-						// ZIG
-						// Right
+					if (node.getParent().getParent().getLeft().equals(node.getParent())) { 	// ZIG ZIG Right
+						
 						Util.rightRotation((BSTNode<T>) node.getParent());
-
+						
 						if (node.getParent().getRight().equals(this.root))
+							this.root = (BSTNode<T>) node.getParent();
+						
+						Util.rightRotation(node);
+						if (node.getRight().equals(this.root))
 							this.root = node;
+					
+					} else { // ZIG ZAG 
+						
 						Util.rightRotation(node);
 						
 						if (node.getRight().equals(this.root))
-							this.root = node;
-					} else { // ZIG ZAG
-						Util.rightRotation((BSTNode<T>) node.getParent());
-						
-						if (node.getParent().getRight().equals(this.root))
 							this.root = node;
 						
 						Util.leftRotation(node);
@@ -54,27 +54,25 @@ public class SplayTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implement
 					
 					
 					if (node.getParent().getRight().equals(node)) {
-						if (node.getParent().getParent().getRight().equals(node.getParent())) { // ZIG
-							// ZIG
-							// LEFT
+						if (node.getParent().getParent().getRight().equals(node.getParent())) { // ZIG ZIG LEFT
+							
 							Util.leftRotation((BSTNode<T>) node.getParent());
 							if (node.getParent().getLeft().equals(this.root))
-								this.root = node;
+								this.root = (BSTNode<T>) node.getParent();
 							
 							Util.leftRotation(node);
 							
 							if (node.getLeft().equals(this.root))
 								this.root = node;
 							
-						} else {
-							Util.leftRotation((BSTNode<T>) node.getParent());
-
-							if (node.getParent().getLeft().equals(this.root))
-								this.root = node;
+						} else { //ZIG ZAG /\
 							
+							Util.leftRotation(node);
+
 							Util.rightRotation(node);
+
 						
-							if (node.getRight().equals(this.root))
+							if (node.getLeft().equals(this.root))
 								this.root = node;
 						}
 					}
@@ -115,7 +113,10 @@ public class SplayTreeImpl<T extends Comparable<T>> extends BSTImpl<T> implement
 	@Override
 	public void insert(T element) {
 		super.insert(element);
-		this.search(element);
+		BSTNode<T> node = super.search(element);
+		
+		if (!node.isEmpty())
+			this.splay(node);
 	}
 
 	

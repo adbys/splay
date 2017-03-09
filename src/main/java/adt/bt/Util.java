@@ -18,6 +18,18 @@ public class Util {
 		node.getLeft().setParent(parent);
 		node.setLeft(node.getParent());
 		node.setParent(parent.getParent());
+		
+		
+		if (!parent.getParent().isEmpty()) {
+			if(parent.getParent().getRight().equals(parent))
+				parent.getParent().setRight(node);
+			else
+				parent.getParent().setLeft(node);
+			
+			
+		}
+		
+		
 		parent.setParent(node);
 		
 		return node;
@@ -39,6 +51,19 @@ public class Util {
 		node.getRight().setParent(parent);
 		node.setRight(node.getParent());
 		node.setParent(parent.getParent());
+		
+		//TODO: ajeitar
+		if (!parent.getParent().isEmpty()) {
+			if(parent.getParent().getLeft().equals(parent))
+				parent.getParent().setRight(node);
+			else
+				parent.getParent().setLeft(node);
+			
+			
+		}
+		
+		
+		
 		parent.setParent(node);
 
 		return node;

@@ -18,6 +18,8 @@ public class StudentSplayTreeTest {
 	public void setUp() {
 		splay = new SplayTreeImpl<>();
 	}
+		
+	
 
 	@Test
 	public void testInit() {
@@ -47,6 +49,50 @@ public class StudentSplayTreeTest {
 		assertEquals(2, splay.height());
 		assertArrayEquals(new Integer[] { 99, 5, -15 }, splay.preOrder());
 	}
+	
+	
+	
+	@Test
+	public void testInsert2() {
+		splay.insert(5);
+		assertEquals(1, splay.size());
+		assertEquals(0, splay.height());
+		assertArrayEquals(new Integer[] { 5 }, splay.preOrder());
+
+		assertFalse(splay.isEmpty());
+		assertEquals(new Integer(5), splay.getRoot().getData());
+
+		splay.insert(-15);
+		assertEquals(2, splay.size());
+		assertEquals(1, splay.height());
+		assertArrayEquals(new Integer[] { -15, 5 }, splay.preOrder());
+
+		splay.insert(99);
+		assertEquals(3, splay.size());
+		assertEquals(2, splay.height());
+		assertArrayEquals(new Integer[] { 99, 5, -15 }, splay.preOrder());
+	
+		splay.insert(998);
+		splay.insert(999);
+		splay.insert(995);
+		splay.insert(993);
+		splay.insert(992);
+		splay.insert(991);
+		splay.insert(990);
+		splay.insert(997);
+		
+		assertEquals(11, splay.size());
+	
+	
+	
+	
+	}
+
+	
+	
+	
+	
+	
 
 	@Test
 	public void testRemove() {
